@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { isDevEnv } from './environment';
-import { currentHost } from './manager/host-manager';
 
 const axiosTimeout = 80000;
 
@@ -20,7 +18,7 @@ function useAxiosLog() {
 
     const reqInterceptor = axios.interceptors.request.use(
       (config) => {
-        if (isDevEnv && isLogActive) {
+        if (isLogActive) {
           console.warn({
             type: 'request',
             url: config.url,
@@ -30,7 +28,7 @@ function useAxiosLog() {
         return config;
       },
       (error) => {
-        if (isDevEnv && isLogActive) {
+        if (isLogActive) {
           console.error('request');
           console.error(error);
 
@@ -42,7 +40,7 @@ function useAxiosLog() {
 
     const resInterceptor = axios.interceptors.response.use(
       (response) => {
-        if (isDevEnv && isLogActive) {
+        if (isLogActive) {
           console.warn({
             type: 'response',
             url: response.config.url,
@@ -59,7 +57,7 @@ function useAxiosLog() {
       },
 
       (error) => {
-        if (isDevEnv && isLogActive) {
+        if (isLogActive) {
           console.error('response');
           console.error(error);
 
@@ -84,8 +82,8 @@ function useAxiosLog() {
 }
 
 function axiosSetup() {
-  const host = currentHost;
-  axios.defaults.baseURL = `${host.baseUrl}`;
+  // const host = currentHost;
+  // axios.defaults.baseURL = `${host.baseUrl}`;
 
   // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   // axios.defaults.headers.common['Accept-Encoding'] = 'gzip';
