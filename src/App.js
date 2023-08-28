@@ -63,6 +63,7 @@ function App() {
             <TextField
               label="Senha"
               variant="standard"
+              type="password"
               value={password}
               onChange={onChangePassword}
             />
