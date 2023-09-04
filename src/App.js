@@ -3,17 +3,16 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Button, TextField, ThemeProvider, createTheme } from '@mui/material';
+import _ from 'lodash';
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import './App.css';
-import _ from 'lodash';
-import logo from './logo.svg';
 import { useNextinAPI } from './apis/nextin-api';
 import { axiosSetup } from './utils/axios-setup';
 
-const darkTheme = createTheme({
+const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
   },
 });
 
@@ -47,11 +46,11 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Marca AI</p>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <p>Gerador de chave Nextin</p>
           <form className={classes.form}>
             {/* <label htmlFor="x">Name:</label> */}
             <TextField
